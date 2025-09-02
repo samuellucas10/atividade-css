@@ -6,6 +6,8 @@
     --cor-link: #33aaff;
     --cor-borda-verde: #00e699;
     --cor-borda-azul: #33aaff;
+    --success: #10b981;
+    --muted: #b3b3b3;
 }
 
 * {
@@ -20,7 +22,7 @@ body {
     animation: degrade-animado 5s infinite alternate;
     color: var(--cor-texto);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1.8; /* Aumentado para melhor legibilidade */
 }
 
 .container {
@@ -36,11 +38,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed; /* Fixa o header no topo */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Garante que o header fique sobre outros elementos */
+    z-index: 1000;
 }
 
 .logo-site {
@@ -55,15 +57,21 @@ body {
     gap: 30px;
 }
 
-.navbar a {
+.nav__link {
     color: var(--cor-texto);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.navbar a:hover {
+.nav__link:hover {
     color: var(--cor-link);
+    transform: scale(1.05);
+}
+
+.nav__link:focus {
+    outline: 2px solid var(--cor-link);
+    outline-offset: 3px;
 }
 
 /* --- Seção de Boas-Vindas --- */
@@ -71,20 +79,25 @@ body {
     background-color: rgba(26, 32, 51, 0.7);
     padding: 20px 40px;
     margin-bottom: 20px;
-    margin-top: 80px; /* Adiciona espaço para o header fixo */
+    margin-top: 80px;
     border-bottom: none;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
+    background-image: linear-gradient(135deg, rgba(26, 32, 51, 0.7) 0%, rgba(30, 36, 56, 0.7) 100%);
+    box-shadow: 0 0 15px rgba(51, 170, 255, 0.3);
+    animation: glow-animado 5s infinite alternate;
 }
 
-/* Estilo para a classe introducao */
-.introducao {
-    font-style: italic;
-    color: #b3b3b3;
+@keyframes glow-animado {
+    0% {
+        box-shadow: 0 0 5px rgba(51, 170, 255, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(51, 170, 255, 0.6);
+    }
 }
 
-/* Pseudo-elemento para a borda animada do .bem-vindo */
 .bem-vindo::after {
     content: '';
     position: absolute;
@@ -98,8 +111,19 @@ body {
 }
 
 .main-title {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Uso de clamp() */
     margin-bottom: 10px;
+}
+
+.introducao {
+    font-style: italic;
+    color: var(--muted); /* Nova variável */
+}
+
+.bem-vindo p::first-letter {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--cor-borda-verde);
 }
 
 .btn {
@@ -113,10 +137,14 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover {
     background-color: #2a88d8;
     transform: translateY(-2px);
-    outline: none; /* Remove a borda de foco padrão */
+}
+
+.btn:focus {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
 }
 
 /* --- Layout Principal das Seções --- */
@@ -136,17 +164,14 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Adicionando box-shadow para os cards */
 .card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilizando ul li */
 .list li {
     margin: 4px 0;
 }
 
-/* Seletor de atributo para links com target="_blank" */
 a[target="_blank"]:hover {
     text-decoration: underline;
 }
@@ -180,17 +205,14 @@ a[target="_blank"]:hover {
 }
 
 .card-title {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 2rem); /* Uso de clamp() */
     margin-bottom: 15px;
-}
-
-.list {
-    list-style: none;
 }
 
 .link-info {
     color: var(--cor-link);
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 /* --- Seção de Serviços --- */
@@ -209,6 +231,11 @@ a[target="_blank"]:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.servico:hover {
+    transform: translateY(-4px); /* Efeito de elevação */
 }
 
 .btn-servico {
@@ -226,6 +253,38 @@ a[target="_blank"]:hover {
 .btn-servico:hover {
     background-color: var(--cor-link);
     color: var(--bg-principal);
+}
+
+/* --- Posicionamento Extra --- */
+.sticky-note {
+    position: sticky;
+    top: 90px;
+    right: 20px;
+    background-color: #fff8c4;
+    color: #444;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 900;
+    width: 200px;
+    text-align: center;
+    float: right;
+    margin: 20px;
+}
+
+.footer-principal {
+    background-color: var(--bg-secundario);
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.extra-space {
+    height: 60px; /* Para garantir que o rodapé fixo não cubra o conteúdo */
 }
 
 /* --- Responsividade --- */
@@ -259,17 +318,21 @@ a[target="_blank"]:hover {
     .bem-vindo {
         margin-top: 120px;
     }
+
+    .sticky-note {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 576px) {
     .main-title {
         font-size: 2rem;
     }
-
     .bem-vindo {
         padding: 20px;
     }
-
     .card {
         padding: 20px;
     }
