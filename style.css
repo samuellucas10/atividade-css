@@ -1,0 +1,299 @@
+/* Definição de Cores e Fontes */
+:root {
+    --bg-principal: #111522;
+    --bg-secundario: #1a2033;
+    --cor-texto: #e6e6e6;
+    --cor-link: #33aaff;
+    --cor-borda-verde: #00e699;
+    --cor-borda-azul: #33aaff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: linear-gradient(90deg, #0A192F 0%, #005A9C 100%);
+    background-size: 500% 100%;
+    animation: degrade-animado 5s infinite alternate;
+    color: var(--cor-texto);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Navegação (Header) --- */
+.header-principal {
+    background-color: var(--bg-secundario);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Garante que o header fique sobre outros elementos */
+}
+
+.logo-site {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--cor-texto);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.navbar a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: var(--cor-link);
+}
+
+/* --- Seção de Boas-Vindas --- */
+.bem-vindo {
+    background-color: rgba(26, 32, 51, 0.7);
+    padding: 20px 40px;
+    margin-bottom: 20px;
+    margin-top: 80px; /* Adiciona espaço para o header fixo */
+    border-bottom: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+/* Estilo para a classe introducao */
+.introducao {
+    font-style: italic;
+    color: #b3b3b3;
+}
+
+/* Pseudo-elemento para a borda animada do .bem-vindo */
+.bem-vindo::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background-image: linear-gradient(90deg, #00C9FF, #92FE9D, #00C9FF);
+    background-size: 300% 100%;
+    animation: degrade-animado-borda 5s infinite linear;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background-color: var(--cor-borda-azul);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover, .btn:focus {
+    background-color: #2a88d8;
+    transform: translateY(-2px);
+    outline: none; /* Remove a borda de foco padrão */
+}
+
+/* --- Layout Principal das Seções --- */
+.conteudo-principal {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background-color: rgba(26, 32, 51, 0.7);
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    border-top: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Adicionando box-shadow para os cards */
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilizando ul li */
+.list li {
+    margin: 4px 0;
+}
+
+/* Seletor de atributo para links com target="_blank" */
+a[target="_blank"]:hover {
+    text-decoration: underline;
+}
+
+.card.border-green::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    background-image: linear-gradient(90deg, #00e699, #33aaff, #00e699);
+    background-size: 300% 100%;
+    animation: degrade-animado-borda 7s infinite linear;
+}
+
+.card.border-blue::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    background-image: linear-gradient(90deg, #33aaff, #00e699, #33aaff);
+    background-size: 300% 100%;
+    animation: degrade-animado-borda 7s infinite linear reverse;
+}
+
+.card-small {
+    grid-column: span 1;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.list {
+    list-style: none;
+}
+
+.link-info {
+    color: var(--cor-link);
+    text-decoration: none;
+}
+
+/* --- Seção de Serviços --- */
+.cards-servicos {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.servico {
+    background-color: var(--bg-principal);
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn-servico {
+    width: 100%;
+    margin-top: 15px;
+    background-color: var(--bg-principal);
+    color: var(--cor-link);
+    border: 1px solid var(--cor-link);
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-servico:hover {
+    background-color: var(--cor-link);
+    color: var(--bg-principal);
+}
+
+/* --- Responsividade --- */
+@media (max-width: 1024px) {
+    .conteudo-principal {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-principal {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+    
+    .navbar ul {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .conteudo-principal {
+        grid-template-columns: 1fr;
+    }
+    
+    .cards-servicos {
+        flex-direction: column;
+    }
+
+    .bem-vindo {
+        margin-top: 120px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .bem-vindo {
+        padding: 20px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+}
+
+/* --- Animação (Keyframes) --- */
+@keyframes degrade-animado {
+    0% {
+        background-position-x: 0%;
+    }
+    100% {
+        background-position-x: 100%;
+    }
+}
+
+@keyframes degrade-animado-borda {
+    0% {
+        background-position-x: 0%;
+    }
+    100% {
+        background-position-x: 100%;
+    }
+}
+
+.section-animada, .box-degradee {
+    display: none;
+}
